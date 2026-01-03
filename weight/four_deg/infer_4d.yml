@@ -1,0 +1,25 @@
+# Inference config (repo-relative paths)
+# Use with: python inference.py -c weight/four_deg/infer_4d.yml -w weight/four_deg/UHD_processor.pth
+
+# Only keys used by inference.py: network_g, train
+train: {}
+
+network_g:
+  type: dwt_aio28
+  dim: 16
+  dwt_dim: 3
+  deg_num: 6
+  n_blocks: [8, 6, 4, 2]
+  rank: [8, 6, 4]
+  rank_scale: [0.3, 0.4, 1, 0.8, 1, 1.2]
+  ffn_scale: 2.0
+  upscaling_factor: 4
+  num_heads: 3
+
+  # Point these to local weights/config in this repo
+  vae_weight: weight/four_deg/VAE_4d.pth
+  cls_weight: weight/four_deg/Cls_4d.pth
+  config: weight/four_deg/VAE_4d.yml
+
+  prompt_scale: 4
+  sample: True
