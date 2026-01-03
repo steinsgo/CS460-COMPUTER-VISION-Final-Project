@@ -1,0 +1,1661 @@
+making res of type 'Res_four9' with 16 in_channels
+making res of type 'Res_four9' with 16 in_channels
+making res of type 'Res_four9' with 16 in_channels
+making res of type 'Res_four9' with 32 in_channels
+making res of type 'Res_four9' with 32 in_channels
+making res of type 'Res_four9' with 64 in_channels
+making res of type 'Res_four9' with 64 in_channels
+making res of type 'Res_four9' with 64 in_channels
+making res of type 'Res_four9' with 64 in_channels
+making res of type 'Res_four9' with 64 in_channels
+Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
+making res of type 'Res_four9' with 64 in_channels
+making res of type 'Res_four9' with 64 in_channels
+making res of type 'Res_four9' with 64 in_channels
+making res of type 'Res_four9' with 64 in_channels
+making res of type 'Res_four9' with 64 in_channels
+freup_type is pad
+making res of type 'Res_four9' with 64 in_channels
+making res of type 'Res_four9' with 64 in_channels
+making res of type 'Res_four9' with 64 in_channels
+freup_type is pad
+making res of type 'Res_four9' with 64 in_channels
+making res of type 'Res_four9' with 32 in_channels
+making res of type 'Res_four9' with 32 in_channels
+freup_type is pad
+making res of type 'Res_four9' with 32 in_channels
+making res of type 'Res_four9' with 16 in_channels
+making res of type 'Res_four9' with 16 in_channels
+dict_keys(['params', 'params_ema', 'iter'])
+load vae weight fromparams
+load vae weight from weight/six_deg/VAE_6d.pth
+missing keys: 392 unexpected keys: 0
+dict_keys(['params', 'params_ema', 'iter'])
+load cls weight from weight/six_deg/cls_6d.pth
+missing keys: 0 unexpected keys: 0
+adapter num is 386
+encoder.adapters.0.wtblock.wt_filter
+encoder.adapters.1.wtblock.wt_filter
+encoder.adapters.2.wtblock.wt_filter
+decoder.adapters.0.wtblock.iwt_filter
+decoder.adapters.1.wtblock.iwt_filter
+decoder.adapters.2.wtblock.iwt_filter
+dwt_aio28(
+  (vae): AutoencoderKL(
+    (encoder): Encoder(
+      (conv_in): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (conv_in2): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (adapters): ModuleList(
+        (0): dwt_adapter(
+          (wtblock): WTblock(
+            (naf): NAFBlock(
+              (conv1): Conv2d(12, 24, kernel_size=(1, 1), stride=(1, 1))
+              (conv2): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=24)
+              (conv3): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+              (sca): Sequential(
+                (0): AdaptiveAvgPool2d(output_size=1)
+                (1): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (sg): SimpleGate()
+              (conv4): Conv2d(12, 24, kernel_size=(1, 1), stride=(1, 1))
+              (conv5): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+              (norm1): LayerNorm2d()
+              (norm2): LayerNorm2d()
+              (dropout1): Identity()
+              (dropout2): Identity()
+            )
+            (wavelet_convs): Conv2d(12, 12, kernel_size=(5, 5), stride=(1, 1), padding=same, groups=12, bias=False)
+            (wavelet_scale): _ScaleModule()
+            (merge): FFT_filter(
+              (filter_generators): ModuleList(
+                (0-3): 4 x Sequential(
+                  (0): Conv2d(3, 16, kernel_size=(1, 1), stride=(1, 1))
+                  (1): Sigmoid()
+                )
+              )
+              (channel_weight_generator): Sequential(
+                (0): Conv2d(16, 12, kernel_size=(1, 1), stride=(1, 1))
+                (1): AdaptiveAvgPool2d(output_size=1)
+                (2): Sigmoid()
+              )
+              (fuse): Conv2d(64, 16, kernel_size=(1, 1), stride=(1, 1))
+            )
+          )
+          (zeroconv): ZeroConv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (enc_conv): Conv2d(28, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (ll_conv): Conv2d(28, 3, kernel_size=(1, 1), stride=(1, 1))
+          (high_conv): Conv2d(28, 9, kernel_size=(1, 1), stride=(1, 1))
+          (prompt): PromptGenBlock(
+            (shuffler): PixelUnshuffle(downscale_factor=2)
+            (convolutions_cls): LowRankConv2d(
+              (mlps): ModuleDict(
+                (3): ModuleDict(
+                  (mlp): Sequential(
+                    (0): Conv2d(600, 600, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=600)
+                    (1): Conv2d(600, 64, kernel_size=(1, 1), stride=(1, 1))
+                    (2): ReLU()
+                    (3): Conv2d(64, 60, kernel_size=(1, 1), stride=(1, 1))
+                  )
+                  (dilation_operations): ModuleList(
+                    (0-5): 6 x Conv2d(60, 6, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                  )
+                )
+                (5): ModuleDict(
+                  (mlp): Sequential(
+                    (0): Conv2d(216, 216, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=216)
+                    (1): Conv2d(216, 64, kernel_size=(1, 1), stride=(1, 1))
+                    (2): ReLU()
+                    (3): Conv2d(64, 36, kernel_size=(1, 1), stride=(1, 1))
+                  )
+                  (dilation_operations): ModuleList(
+                    (0-1): 2 x Conv2d(36, 6, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                  )
+                )
+                (7): ModuleDict(
+                  (mlp): Sequential(
+                    (0): Conv2d(96, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=96)
+                    (1): Conv2d(96, 64, kernel_size=(1, 1), stride=(1, 1))
+                    (2): ReLU()
+                    (3): Conv2d(64, 24, kernel_size=(1, 1), stride=(1, 1))
+                  )
+                  (dilation_operations): ModuleList(
+                    (0-1): 2 x Conv2d(24, 6, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                  )
+                )
+                (9): ModuleDict(
+                  (mlp): Sequential(
+                    (0): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=24)
+                    (1): Conv2d(24, 96, kernel_size=(1, 1), stride=(1, 1))
+                    (2): ReLU()
+                    (3): Conv2d(96, 12, kernel_size=(1, 1), stride=(1, 1))
+                  )
+                  (dilation_operations): ModuleList(
+                    (0-1): 2 x Conv2d(12, 6, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                  )
+                )
+                (11): ModuleDict(
+                  (mlp): Sequential(
+                    (0): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=24)
+                    (1): Conv2d(24, 96, kernel_size=(1, 1), stride=(1, 1))
+                    (2): ReLU()
+                    (3): Conv2d(96, 12, kernel_size=(1, 1), stride=(1, 1))
+                  )
+                  (dilation_operations): ModuleList(
+                    (0): Conv2d(12, 6, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                  )
+                )
+                (17): ModuleDict(
+                  (mlp): Sequential(
+                    (0): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=6)
+                    (1): Conv2d(6, 24, kernel_size=(1, 1), stride=(1, 1))
+                    (2): ReLU()
+                    (3): Conv2d(24, 6, kernel_size=(1, 1), stride=(1, 1))
+                  )
+                  (dilation_operations): ModuleList(
+                    (0): Conv2d(6, 6, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                  )
+                )
+              )
+            )
+            (convolutions_deg): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          )
+        )
+        (1): dwt_adapter(
+          (wtblock): WTblock(
+            (naf): NAFBlock(
+              (conv1): Conv2d(12, 24, kernel_size=(1, 1), stride=(1, 1))
+              (conv2): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=24)
+              (conv3): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+              (sca): Sequential(
+                (0): AdaptiveAvgPool2d(output_size=1)
+                (1): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (sg): SimpleGate()
+              (conv4): Conv2d(12, 24, kernel_size=(1, 1), stride=(1, 1))
+              (conv5): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+              (norm1): LayerNorm2d()
+              (norm2): LayerNorm2d()
+              (dropout1): Identity()
+              (dropout2): Identity()
+            )
+            (wavelet_convs): Conv2d(12, 12, kernel_size=(5, 5), stride=(1, 1), padding=same, groups=12, bias=False)
+            (wavelet_scale): _ScaleModule()
+            (merge): FFT_filter(
+              (filter_generators): ModuleList(
+                (0-3): 4 x Sequential(
+                  (0): Conv2d(3, 32, kernel_size=(1, 1), stride=(1, 1))
+                  (1): Sigmoid()
+                )
+              )
+              (channel_weight_generator): Sequential(
+                (0): Conv2d(32, 12, kernel_size=(1, 1), stride=(1, 1))
+                (1): AdaptiveAvgPool2d(output_size=1)
+                (2): Sigmoid()
+              )
+              (fuse): Conv2d(128, 32, kernel_size=(1, 1), stride=(1, 1))
+            )
+          )
+          (zeroconv): ZeroConv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          (enc_conv): Conv2d(44, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (ll_conv): Conv2d(44, 3, kernel_size=(1, 1), stride=(1, 1))
+          (high_conv): Conv2d(44, 9, kernel_size=(1, 1), stride=(1, 1))
+          (prompt): PromptGenBlock(
+            (shuffler): PixelUnshuffle(downscale_factor=2)
+            (convolutions_cls): LowRankConv2d(
+              (mlps): ModuleDict(
+                (3): ModuleDict(
+                  (mlp): Sequential(
+                    (0): Conv2d(96, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=96)
+                    (1): Conv2d(96, 64, kernel_size=(1, 1), stride=(1, 1))
+                    (2): ReLU()
+                    (3): Conv2d(64, 24, kernel_size=(1, 1), stride=(1, 1))
+                  )
+                  (dilation_operations): ModuleList(
+                    (0-2): 3 x Conv2d(24, 6, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                  )
+                )
+                (5): ModuleDict(
+                  (mlp): Sequential(
+                    (0): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=24)
+                    (1): Conv2d(24, 96, kernel_size=(1, 1), stride=(1, 1))
+                    (2): ReLU()
+                    (3): Conv2d(96, 12, kernel_size=(1, 1), stride=(1, 1))
+                  )
+                  (dilation_operations): ModuleList(
+                    (0): Conv2d(12, 6, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                  )
+                )
+                (9): ModuleDict(
+                  (mlp): Sequential(
+                    (0): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=6)
+                    (1): Conv2d(6, 24, kernel_size=(1, 1), stride=(1, 1))
+                    (2): ReLU()
+                    (3): Conv2d(24, 6, kernel_size=(1, 1), stride=(1, 1))
+                  )
+                  (dilation_operations): ModuleList(
+                    (0): Conv2d(6, 6, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                  )
+                )
+              )
+            )
+            (convolutions_deg): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          )
+        )
+        (2): dwt_adapter(
+          (wtblock): WTblock(
+            (naf): NAFBlock(
+              (conv1): Conv2d(12, 24, kernel_size=(1, 1), stride=(1, 1))
+              (conv2): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=24)
+              (conv3): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+              (sca): Sequential(
+                (0): AdaptiveAvgPool2d(output_size=1)
+                (1): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (sg): SimpleGate()
+              (conv4): Conv2d(12, 24, kernel_size=(1, 1), stride=(1, 1))
+              (conv5): Conv2d(12, 12, kernel_size=(1, 1), stride=(1, 1))
+              (norm1): LayerNorm2d()
+              (norm2): LayerNorm2d()
+              (dropout1): Identity()
+              (dropout2): Identity()
+            )
+            (wavelet_convs): Conv2d(12, 12, kernel_size=(5, 5), stride=(1, 1), padding=same, groups=12, bias=False)
+            (wavelet_scale): _ScaleModule()
+            (merge): FFT_filter(
+              (filter_generators): ModuleList(
+                (0-3): 4 x Sequential(
+                  (0): Conv2d(3, 64, kernel_size=(1, 1), stride=(1, 1))
+                  (1): Sigmoid()
+                )
+              )
+              (channel_weight_generator): Sequential(
+                (0): Conv2d(64, 12, kernel_size=(1, 1), stride=(1, 1))
+                (1): AdaptiveAvgPool2d(output_size=1)
+                (2): Sigmoid()
+              )
+              (fuse): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1))
+            )
+          )
+          (zeroconv): ZeroConv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          (enc_conv): Conv2d(76, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (ll_conv): Conv2d(76, 3, kernel_size=(1, 1), stride=(1, 1))
+          (high_conv): Conv2d(76, 9, kernel_size=(1, 1), stride=(1, 1))
+          (prompt): PromptGenBlock(
+            (shuffler): PixelUnshuffle(downscale_factor=2)
+            (convolutions_cls): LowRankConv2d(
+              (mlps): ModuleDict(
+                (3): ModuleDict(
+                  (mlp): Sequential(
+                    (0): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=24)
+                    (1): Conv2d(24, 96, kernel_size=(1, 1), stride=(1, 1))
+                    (2): ReLU()
+                    (3): Conv2d(96, 12, kernel_size=(1, 1), stride=(1, 1))
+                  )
+                  (dilation_operations): ModuleList(
+                    (0-1): 2 x Conv2d(12, 6, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                  )
+                )
+                (5): ModuleDict(
+                  (mlp): Sequential(
+                    (0): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=6)
+                    (1): Conv2d(6, 24, kernel_size=(1, 1), stride=(1, 1))
+                    (2): ReLU()
+                    (3): Conv2d(24, 6, kernel_size=(1, 1), stride=(1, 1))
+                  )
+                  (dilation_operations): ModuleList(
+                    (0-1): 2 x Conv2d(6, 6, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                  )
+                )
+              )
+            )
+            (convolutions_deg): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          )
+        )
+      )
+      (down): ModuleList(
+        (0): Module(
+          (block): ModuleList(
+            (0-1): 2 x Res_four9(
+              (norm1): GroupNorm(4, 16, eps=1e-06, affine=True)
+              (splitconv1): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+              (splitconv2): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+              (conv1): DepthwiseSeparableConv(
+                (depthwise): Conv2d(8, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=8)
+                (pointwise): Conv2d(8, 8, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (norm2): GroupNorm(4, 8, eps=1e-06, affine=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+              (conv2): DepthwiseSeparableConv(
+                (depthwise): Conv2d(8, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=8)
+                (pointwise): Conv2d(8, 8, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (mergeconv): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              (ampconv0): Sequential(
+                (0): Conv2d(9, 9, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(9, 9, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (ampconv): Sequential(
+                (0): Conv2d(8, 8, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(8, 8, kernel_size=(1, 1), stride=(1, 1))
+              )
+            )
+          )
+          (attn): ModuleList()
+          (downsample): Downsample(
+            (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(2, 2))
+          )
+        )
+        (1): Module(
+          (block): ModuleList(
+            (0): Res_four9(
+              (norm1): GroupNorm(4, 16, eps=1e-06, affine=True)
+              (splitconv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              (splitconv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              (conv1): DepthwiseSeparableConv(
+                (depthwise): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=16)
+                (pointwise): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (norm2): GroupNorm(4, 16, eps=1e-06, affine=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+              (conv2): DepthwiseSeparableConv(
+                (depthwise): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=16)
+                (pointwise): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (mergeconv): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              (ampconv0): Sequential(
+                (0): Conv2d(9, 9, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(9, 9, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (ampconv): Sequential(
+                (0): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (nin_shortcut): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1))
+            )
+            (1): Res_four9(
+              (norm1): GroupNorm(4, 32, eps=1e-06, affine=True)
+              (splitconv1): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+              (splitconv2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+              (conv1): DepthwiseSeparableConv(
+                (depthwise): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=16)
+                (pointwise): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (norm2): GroupNorm(4, 16, eps=1e-06, affine=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+              (conv2): DepthwiseSeparableConv(
+                (depthwise): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=16)
+                (pointwise): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (mergeconv): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              (ampconv0): Sequential(
+                (0): Conv2d(17, 17, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(17, 17, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (ampconv): Sequential(
+                (0): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              )
+            )
+          )
+          (attn): ModuleList()
+          (downsample): Downsample(
+            (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(2, 2))
+          )
+        )
+        (2): Module(
+          (block): ModuleList(
+            (0): Res_four9(
+              (norm1): GroupNorm(4, 32, eps=1e-06, affine=True)
+              (splitconv1): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              (splitconv2): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              (conv1): DepthwiseSeparableConv(
+                (depthwise): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+                (pointwise): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (norm2): GroupNorm(4, 32, eps=1e-06, affine=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+              (conv2): DepthwiseSeparableConv(
+                (depthwise): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+                (pointwise): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (mergeconv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+              (ampconv0): Sequential(
+                (0): Conv2d(17, 17, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(17, 17, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (ampconv): Sequential(
+                (0): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (nin_shortcut): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1))
+            )
+            (1): Res_four9(
+              (norm1): GroupNorm(4, 64, eps=1e-06, affine=True)
+              (splitconv1): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+              (splitconv2): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+              (conv1): DepthwiseSeparableConv(
+                (depthwise): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+                (pointwise): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (norm2): GroupNorm(4, 32, eps=1e-06, affine=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+              (conv2): DepthwiseSeparableConv(
+                (depthwise): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+                (pointwise): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (mergeconv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+              (ampconv0): Sequential(
+                (0): Conv2d(33, 33, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(33, 33, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (ampconv): Sequential(
+                (0): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              )
+            )
+          )
+          (attn): ModuleList(
+            (0-1): 2 x TransformerBlock(
+              (norm1): LayerNorm(
+                (body): WithBias_LayerNorm()
+              )
+              (attn): Attention(
+                (qkv): Conv2d(64, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (qkv_dwconv): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+                (project_out): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              )
+              (norm2): LayerNorm(
+                (body): WithBias_LayerNorm()
+              )
+              (ffn): FeedForward(
+                (project_in): Conv2d(64, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (dwconv): Conv2d(384, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=384, bias=False)
+                (project_out): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              )
+            )
+          )
+          (downsample): Downsample(
+            (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2))
+          )
+        )
+        (3): Module(
+          (block): ModuleList(
+            (0-1): 2 x Res_four9(
+              (norm1): GroupNorm(4, 64, eps=1e-06, affine=True)
+              (splitconv1): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+              (splitconv2): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+              (conv1): DepthwiseSeparableConv(
+                (depthwise): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+                (pointwise): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (norm2): GroupNorm(4, 32, eps=1e-06, affine=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+              (conv2): DepthwiseSeparableConv(
+                (depthwise): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+                (pointwise): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (mergeconv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+              (ampconv0): Sequential(
+                (0): Conv2d(33, 33, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(33, 33, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (ampconv): Sequential(
+                (0): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              )
+            )
+          )
+          (attn): ModuleList(
+            (0-1): 2 x TransformerBlock(
+              (norm1): LayerNorm(
+                (body): WithBias_LayerNorm()
+              )
+              (attn): Attention(
+                (qkv): Conv2d(64, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (qkv_dwconv): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+                (project_out): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              )
+              (norm2): LayerNorm(
+                (body): WithBias_LayerNorm()
+              )
+              (ffn): FeedForward(
+                (project_in): Conv2d(64, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (dwconv): Conv2d(384, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=384, bias=False)
+                (project_out): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              )
+            )
+          )
+        )
+      )
+      (mid): Module(
+        (block_1): Res_four9(
+          (norm1): GroupNorm(4, 64, eps=1e-06, affine=True)
+          (splitconv1): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+          (splitconv2): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+          (conv1): DepthwiseSeparableConv(
+            (depthwise): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+            (pointwise): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (norm2): GroupNorm(4, 32, eps=1e-06, affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (conv2): DepthwiseSeparableConv(
+            (depthwise): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+            (pointwise): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (mergeconv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          (ampconv0): Sequential(
+            (0): Conv2d(33, 33, kernel_size=(1, 1), stride=(1, 1))
+            (1): LeakyReLU(negative_slope=0.1, inplace=True)
+            (2): Conv2d(33, 33, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (ampconv): Sequential(
+            (0): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+            (1): LeakyReLU(negative_slope=0.1, inplace=True)
+            (2): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (attn_1): TransformerBlock(
+          (norm1): LayerNorm(
+            (body): WithBias_LayerNorm()
+          )
+          (attn): Attention(
+            (qkv): Conv2d(64, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (qkv_dwconv): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+            (project_out): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          )
+          (norm2): LayerNorm(
+            (body): WithBias_LayerNorm()
+          )
+          (ffn): FeedForward(
+            (project_in): Conv2d(64, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (dwconv): Conv2d(384, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=384, bias=False)
+            (project_out): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          )
+        )
+        (block_2): Res_four9(
+          (norm1): GroupNorm(4, 64, eps=1e-06, affine=True)
+          (splitconv1): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+          (splitconv2): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+          (conv1): DepthwiseSeparableConv(
+            (depthwise): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+            (pointwise): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (norm2): GroupNorm(4, 32, eps=1e-06, affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (conv2): DepthwiseSeparableConv(
+            (depthwise): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+            (pointwise): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (mergeconv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          (ampconv0): Sequential(
+            (0): Conv2d(33, 33, kernel_size=(1, 1), stride=(1, 1))
+            (1): LeakyReLU(negative_slope=0.1, inplace=True)
+            (2): Conv2d(33, 33, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (ampconv): Sequential(
+            (0): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+            (1): LeakyReLU(negative_slope=0.1, inplace=True)
+            (2): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (norm_out): GroupNorm(4, 64, eps=1e-06, affine=True)
+      (conv_out): Conv2d(64, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (decoder): Decoder(
+      (conv_in): Conv2d(4, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (mid): Module(
+        (block_1): Res_four9(
+          (norm1): GroupNorm(4, 64, eps=1e-06, affine=True)
+          (splitconv1): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+          (splitconv2): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+          (conv1): DepthwiseSeparableConv(
+            (depthwise): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+            (pointwise): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (norm2): GroupNorm(4, 32, eps=1e-06, affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (conv2): DepthwiseSeparableConv(
+            (depthwise): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+            (pointwise): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (mergeconv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          (ampconv0): Sequential(
+            (0): Conv2d(33, 33, kernel_size=(1, 1), stride=(1, 1))
+            (1): LeakyReLU(negative_slope=0.1, inplace=True)
+            (2): Conv2d(33, 33, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (ampconv): Sequential(
+            (0): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+            (1): LeakyReLU(negative_slope=0.1, inplace=True)
+            (2): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (attn_1): TransformerBlock(
+          (norm1): LayerNorm(
+            (body): WithBias_LayerNorm()
+          )
+          (attn): Attention(
+            (qkv): Conv2d(64, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (qkv_dwconv): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+            (project_out): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          )
+          (norm2): LayerNorm(
+            (body): WithBias_LayerNorm()
+          )
+          (ffn): FeedForward(
+            (project_in): Conv2d(64, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (dwconv): Conv2d(384, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=384, bias=False)
+            (project_out): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          )
+        )
+        (block_2): Res_four9(
+          (norm1): GroupNorm(4, 64, eps=1e-06, affine=True)
+          (splitconv1): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+          (splitconv2): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+          (conv1): DepthwiseSeparableConv(
+            (depthwise): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+            (pointwise): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (norm2): GroupNorm(4, 32, eps=1e-06, affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (conv2): DepthwiseSeparableConv(
+            (depthwise): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+            (pointwise): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (mergeconv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          (ampconv0): Sequential(
+            (0): Conv2d(33, 33, kernel_size=(1, 1), stride=(1, 1))
+            (1): LeakyReLU(negative_slope=0.1, inplace=True)
+            (2): Conv2d(33, 33, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (ampconv): Sequential(
+            (0): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+            (1): LeakyReLU(negative_slope=0.1, inplace=True)
+            (2): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (up): ModuleList(
+        (0): Module(
+          (block): ModuleList(
+            (0): Res_four9(
+              (norm1): GroupNorm(4, 32, eps=1e-06, affine=True)
+              (splitconv1): Conv2d(32, 8, kernel_size=(1, 1), stride=(1, 1))
+              (splitconv2): Conv2d(32, 8, kernel_size=(1, 1), stride=(1, 1))
+              (conv1): DepthwiseSeparableConv(
+                (depthwise): Conv2d(8, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=8)
+                (pointwise): Conv2d(8, 8, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (norm2): GroupNorm(4, 8, eps=1e-06, affine=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+              (conv2): DepthwiseSeparableConv(
+                (depthwise): Conv2d(8, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=8)
+                (pointwise): Conv2d(8, 8, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (mergeconv): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              (ampconv0): Sequential(
+                (0): Conv2d(17, 17, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(17, 17, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (ampconv): Sequential(
+                (0): Conv2d(8, 8, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(8, 8, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (nin_shortcut): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+            )
+            (1-2): 2 x Res_four9(
+              (norm1): GroupNorm(4, 16, eps=1e-06, affine=True)
+              (splitconv1): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+              (splitconv2): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+              (conv1): DepthwiseSeparableConv(
+                (depthwise): Conv2d(8, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=8)
+                (pointwise): Conv2d(8, 8, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (norm2): GroupNorm(4, 8, eps=1e-06, affine=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+              (conv2): DepthwiseSeparableConv(
+                (depthwise): Conv2d(8, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=8)
+                (pointwise): Conv2d(8, 8, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (mergeconv): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              (ampconv0): Sequential(
+                (0): Conv2d(9, 9, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(9, 9, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (ampconv): Sequential(
+                (0): Conv2d(8, 8, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(8, 8, kernel_size=(1, 1), stride=(1, 1))
+              )
+            )
+          )
+          (attn): ModuleList()
+        )
+        (1): Module(
+          (block): ModuleList(
+            (0): Res_four9(
+              (norm1): GroupNorm(4, 64, eps=1e-06, affine=True)
+              (splitconv1): Conv2d(64, 16, kernel_size=(1, 1), stride=(1, 1))
+              (splitconv2): Conv2d(64, 16, kernel_size=(1, 1), stride=(1, 1))
+              (conv1): DepthwiseSeparableConv(
+                (depthwise): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=16)
+                (pointwise): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (norm2): GroupNorm(4, 16, eps=1e-06, affine=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+              (conv2): DepthwiseSeparableConv(
+                (depthwise): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=16)
+                (pointwise): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (mergeconv): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              (ampconv0): Sequential(
+                (0): Conv2d(33, 33, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(33, 33, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (ampconv): Sequential(
+                (0): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (nin_shortcut): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+            )
+            (1-2): 2 x Res_four9(
+              (norm1): GroupNorm(4, 32, eps=1e-06, affine=True)
+              (splitconv1): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+              (splitconv2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+              (conv1): DepthwiseSeparableConv(
+                (depthwise): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=16)
+                (pointwise): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (norm2): GroupNorm(4, 16, eps=1e-06, affine=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+              (conv2): DepthwiseSeparableConv(
+                (depthwise): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=16)
+                (pointwise): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (mergeconv): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              (ampconv0): Sequential(
+                (0): Conv2d(17, 17, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(17, 17, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (ampconv): Sequential(
+                (0): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+              )
+            )
+          )
+          (attn): ModuleList()
+          (upsample): fresadd(
+            (Fup): freup_Periodicpadding(
+              (amp_fuse): Sequential(
+                (0): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1)
+                (2): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (pha_fuse): Sequential(
+                (0): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1)
+                (2): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (post): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+            )
+            (fuse): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (2-3): 2 x Module(
+          (block): ModuleList(
+            (0-2): 3 x Res_four9(
+              (norm1): GroupNorm(4, 64, eps=1e-06, affine=True)
+              (splitconv1): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+              (splitconv2): Conv2d(64, 32, kernel_size=(1, 1), stride=(1, 1))
+              (conv1): DepthwiseSeparableConv(
+                (depthwise): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+                (pointwise): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (norm2): GroupNorm(4, 32, eps=1e-06, affine=True)
+              (dropout): Dropout(p=0.0, inplace=False)
+              (conv2): DepthwiseSeparableConv(
+                (depthwise): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+                (pointwise): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (mergeconv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+              (ampconv0): Sequential(
+                (0): Conv2d(33, 33, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(33, 33, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (ampconv): Sequential(
+                (0): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1, inplace=True)
+                (2): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+              )
+            )
+          )
+          (attn): ModuleList(
+            (0-2): 3 x TransformerBlock(
+              (norm1): LayerNorm(
+                (body): WithBias_LayerNorm()
+              )
+              (attn): Attention(
+                (qkv): Conv2d(64, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (qkv_dwconv): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+                (project_out): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              )
+              (norm2): LayerNorm(
+                (body): WithBias_LayerNorm()
+              )
+              (ffn): FeedForward(
+                (project_in): Conv2d(64, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (dwconv): Conv2d(384, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=384, bias=False)
+                (project_out): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              )
+            )
+          )
+          (upsample): fresadd(
+            (Fup): freup_Periodicpadding(
+              (amp_fuse): Sequential(
+                (0): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1)
+                (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (pha_fuse): Sequential(
+                (0): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+                (1): LeakyReLU(negative_slope=0.1)
+                (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (post): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+            )
+            (fuse): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (adapters): ModuleList(
+        (0): dwt_revadapter(
+          (wtblock): WT_revblock(
+            (merge_conv): Conv2d(35, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (naf): NAFBlock(
+              (conv1): Conv2d(3, 6, kernel_size=(1, 1), stride=(1, 1))
+              (conv2): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=6)
+              (conv3): Conv2d(3, 3, kernel_size=(1, 1), stride=(1, 1))
+              (sca): Sequential(
+                (0): AdaptiveAvgPool2d(output_size=1)
+                (1): Conv2d(3, 3, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (sg): SimpleGate()
+              (conv4): Conv2d(3, 6, kernel_size=(1, 1), stride=(1, 1))
+              (conv5): Conv2d(3, 3, kernel_size=(1, 1), stride=(1, 1))
+              (norm1): LayerNorm2d()
+              (norm2): LayerNorm2d()
+              (dropout1): Identity()
+              (dropout2): Identity()
+            )
+          )
+          (zeroconv): ZeroConv2d(3, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (low_conv_amp): Conv2d(3, 1, kernel_size=(1, 1), stride=(1, 1))
+          (low_conv_pha): Conv2d(3, 1, kernel_size=(1, 1), stride=(1, 1))
+          (high_conv_amp): Conv2d(3, 1, kernel_size=(1, 1), stride=(1, 1))
+          (high_conv_pha): Conv2d(3, 1, kernel_size=(1, 1), stride=(1, 1))
+          (mid_conv_amp): Conv2d(6, 2, kernel_size=(1, 1), stride=(1, 1))
+          (mid_conv_pha): Conv2d(6, 2, kernel_size=(1, 1), stride=(1, 1))
+          (shuffler): PixelShuffle(upscale_factor=2)
+          (fre_prompt): Conv2d(4, 28, kernel_size=(1, 1), stride=(1, 1))
+          (sigmoid): Sigmoid()
+        )
+        (1-2): 2 x dwt_revadapter(
+          (wtblock): WT_revblock(
+            (merge_conv): Conv2d(67, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (naf): NAFBlock(
+              (conv1): Conv2d(3, 6, kernel_size=(1, 1), stride=(1, 1))
+              (conv2): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=6)
+              (conv3): Conv2d(3, 3, kernel_size=(1, 1), stride=(1, 1))
+              (sca): Sequential(
+                (0): AdaptiveAvgPool2d(output_size=1)
+                (1): Conv2d(3, 3, kernel_size=(1, 1), stride=(1, 1))
+              )
+              (sg): SimpleGate()
+              (conv4): Conv2d(3, 6, kernel_size=(1, 1), stride=(1, 1))
+              (conv5): Conv2d(3, 3, kernel_size=(1, 1), stride=(1, 1))
+              (norm1): LayerNorm2d()
+              (norm2): LayerNorm2d()
+              (dropout1): Identity()
+              (dropout2): Identity()
+            )
+          )
+          (zeroconv): ZeroConv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (low_conv_amp): Conv2d(3, 1, kernel_size=(1, 1), stride=(1, 1))
+          (low_conv_pha): Conv2d(3, 1, kernel_size=(1, 1), stride=(1, 1))
+          (high_conv_amp): Conv2d(3, 1, kernel_size=(1, 1), stride=(1, 1))
+          (high_conv_pha): Conv2d(3, 1, kernel_size=(1, 1), stride=(1, 1))
+          (mid_conv_amp): Conv2d(6, 2, kernel_size=(1, 1), stride=(1, 1))
+          (mid_conv_pha): Conv2d(6, 2, kernel_size=(1, 1), stride=(1, 1))
+          (shuffler): PixelShuffle(upscale_factor=2)
+          (fre_prompt): Conv2d(4, 28, kernel_size=(1, 1), stride=(1, 1))
+          (sigmoid): Sigmoid()
+        )
+      )
+      (norm_out): GroupNorm(4, 16, eps=1e-06, affine=True)
+      (norm_out2): GroupNorm(3, 3, eps=1e-06, affine=True)
+      (conv_out): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (conv_out2): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (adapter_mid): Sequential(
+      (0): TransformerBlock(
+        (norm1): LayerNorm(
+          (body): WithBias_LayerNorm()
+        )
+        (attn): Attention(
+          (qkv): Conv2d(3, 9, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (qkv_dwconv): Conv2d(9, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=9, bias=False)
+          (project_out): Conv2d(3, 3, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+        (norm2): LayerNorm(
+          (body): WithBias_LayerNorm()
+        )
+        (ffn): FeedForward(
+          (project_in): Conv2d(3, 18, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (dwconv): Conv2d(18, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=18, bias=False)
+          (project_out): Conv2d(9, 3, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+      (1): Conv2d(3, 3, kernel_size=(1, 1), stride=(1, 1))
+      (2): TransformerBlock(
+        (norm1): LayerNorm(
+          (body): WithBias_LayerNorm()
+        )
+        (attn): Attention(
+          (qkv): Conv2d(3, 9, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (qkv_dwconv): Conv2d(9, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=9, bias=False)
+          (project_out): Conv2d(3, 3, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+        (norm2): LayerNorm(
+          (body): WithBias_LayerNorm()
+        )
+        (ffn): FeedForward(
+          (project_in): Conv2d(3, 18, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (dwconv): Conv2d(18, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=18, bias=False)
+          (project_out): Conv2d(9, 3, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+    )
+    (quant_conv): Conv2d(8, 32, kernel_size=(1, 1), stride=(1, 1))
+    (post_quant_conv): Conv2d(16, 4, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (wavelet_scale): ModuleList(
+    (0-2): 3 x _ScaleModule()
+  )
+  (cls): Classifier(
+    (lastOut): Linear(in_features=32, out_features=7, bias=True)
+    (CondNet): Sequential(
+      (0): Conv2d(3, 128, kernel_size=(3, 3), stride=(3, 3))
+      (1): LeakyReLU(negative_slope=0.1, inplace=True)
+      (2): Conv2d(128, 128, kernel_size=(3, 3), stride=(3, 3))
+      (3): LeakyReLU(negative_slope=0.1, inplace=True)
+      (4): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+      (5): LeakyReLU(negative_slope=0.1, inplace=True)
+      (6): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+      (7): LeakyReLU(negative_slope=0.1, inplace=True)
+      (8): Conv2d(128, 32, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+  (feats): ModuleList(
+    (0): Sequential(
+      (0): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (1): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (2): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (3): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (4): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (5): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (6): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (7): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+    )
+    (1): Sequential(
+      (0): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (1): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (2): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (3): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (4): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (5): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+    )
+    (2): Sequential(
+      (0): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (1): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (2): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (3): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+    )
+    (3): Sequential(
+      (0): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+      (1): AttBlock(
+        (norm1): LayerNorm()
+        (norm2): LayerNorm()
+        (local): Local(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (weight): Sequential(
+            (0): Conv2d(16, 8, kernel_size=(1, 1), stride=(1, 1))
+            (1): ReLU(inplace=True)
+            (2): Conv2d(8, 16, kernel_size=(1, 1), stride=(1, 1))
+            (3): Sigmoid()
+          )
+        )
+        (gobal): Gobal(
+          (conv1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act1): GELU(approximate='none')
+          (conv2): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act2): GELU(approximate='none')
+          (conv3): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (act3): Sigmoid()
+        )
+        (conv): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+        (fc): FC(
+          (fc): Sequential(
+            (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): GELU(approximate='none')
+            (2): Conv2d(32, 16, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+      )
+    )
+  )
+  (rec_block): Sequential(
+    (0): WTConv2d(
+      (base_conv): Conv2d(3, 3, kernel_size=(5, 5), stride=(1, 1), padding=same, groups=3)
+      (base_scale): _ScaleModule()
+      (wavelet_convs): ModuleList(
+        (0-2): 3 x Conv2d(12, 12, kernel_size=(5, 5), stride=(1, 1), padding=same, groups=12, bias=False)
+      )
+      (wavelet_scale): ModuleList(
+        (0-2): 3 x _ScaleModule()
+      )
+    )
+    (1): Conv2d(3, 16, kernel_size=(1, 1), stride=(1, 1))
+    (2): Conv2d(16, 3, kernel_size=(1, 1), stride=(1, 1))
+    (3): WTConv2d(
+      (base_conv): Conv2d(3, 3, kernel_size=(5, 5), stride=(1, 1), padding=same, groups=3)
+      (base_scale): _ScaleModule()
+      (wavelet_convs): ModuleList(
+        (0-2): 3 x Conv2d(12, 12, kernel_size=(5, 5), stride=(1, 1), padding=same, groups=12, bias=False)
+      )
+      (wavelet_scale): ModuleList(
+        (0-2): 3 x _ScaleModule()
+      )
+    )
+  )
+)/opt/conda/private/envs/uhd_processor/lib/python3.8/site-packages/torchmetrics/functional/image/lpips.py:325: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+/home/apulis-dev/userdata/lbh/UHD-processer/basicsr/archs/dwt_aio28_arch.py:689: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  print(torch.load(vae_weight,map_location='cpu').keys())
+/home/apulis-dev/userdata/lbh/UHD-processer/basicsr/archs/dwt_aio28_arch.py:690: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  msg = self.vae.load_state_dict(torch.load(vae_weight,map_location='cpu')[param_key],strict=False)
+/home/apulis-dev/userdata/lbh/UHD-processer/basicsr/archs/dwt_aio28_arch.py:704: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  print(torch.load(cls_weight,map_location='cpu').keys())
+/home/apulis-dev/userdata/lbh/UHD-processer/basicsr/archs/dwt_aio28_arch.py:705: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  msg2 = self.cls.load_state_dict(torch.load(cls_weight,map_location='cpu')['params_ema'],strict=True)
+inference.py:250: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  EnhanceNet.load_state_dict(torch.load(enhance_weight_path)['params'], strict=True)
+
+The number of parameters: 1711791
+
+  0%|          | 0/1 [00:00<?, ?image/s]
+Test 138_UHD_snow.JPG:   0%|          | 0/1 [00:00<?, ?image/s]
+Test 138_UHD_snow.JPG: 100%|██████████| 1/1 [00:02<00:00,  2.99s/image]
+Test 138_UHD_snow.JPG: 100%|██████████| 1/1 [00:02<00:00,  3.00s/image]
+image name /home/apulis-dev/userdata/lbh/datasets/processer/UHD_snow/test/input/138_UHD_snow.JPG
+b, c, h, w = img_tensor.size() torch.Size([1, 3, 2160, 3840])
+time: 1.8751792907714844
+num_img 1
+
+python -c "import cv2; from skimage.metrics import peak_signal_noise_ratio, structural_similarity; a=cv2.imread('/home/apulis-dev/userdata/lbh/UHD-processer/results/snow/138_UHD_snow.JPG'); b=cv2.imread('/home/apulis-dev/userdata/lbh/datasets/process
+er/UHD_snow/test/gt/138_UHD_snow.JPG'); a=cv2.cvtColor(a, cv2.COLOR_BGR2RGB); b=cv2.cvtColor(b, cv2.COLOR_BGR2RGB); print('PSNR:', peak_signal_noise_ratio(b,a,data_range=255)); 
+print('SSIM:', structural_similarity(b,a,channel_axis=2,data_range=255))"
+PSNR: 37.16369809719941
+SSIM: 0.9871924023743869
