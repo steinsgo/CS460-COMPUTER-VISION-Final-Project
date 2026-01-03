@@ -107,8 +107,8 @@ Single-image inference example:
 
 ```bash
 python inference.py \
-  -w weight/four_deg/4d_UHDprocessor.pth \
-  -c weight/four_deg/infer_4d.yml \
+  -w weight/six_deg/6d_UHDprocessor.pth \
+  -c weight/six_deg/infer_6d.yml \
   -i /path/to/input_image.jpg \
   -o results/<task_name>
 ```
