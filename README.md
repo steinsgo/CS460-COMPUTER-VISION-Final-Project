@@ -94,9 +94,9 @@ For this course project, we focus on reproducing the training protocol and valid
 Example training commands (if scripts are available):
 
 ```bash
-python basicsr/train_cls.py --config weight/four_deg/Cls_4d.yml
-python basicsr/train.py --config weight/four_deg/VAE_4d.yml
-python basicsr/train_fgt.py --config weight/four_deg/train_4d.yml
+python basicsr/train_cls.py --config weight/six_deg/Cls_6d.yml
+python basicsr/train.py --config weight/six_deg/VAE_6d.yml
+python basicsr/train_fgt.py --config weight/six_deg/train_6d.yml
 ```
 
 ---
